@@ -9,8 +9,8 @@ public class playerBehavior : MonoBehaviour
 
     bool keyAcquired = false;
     bool gameEnd = false;
-   // public GameObject npcText;
-   // public GameObject trappedNPCtext;
+    public GameObject npcText;
+    public GameObject trappedNPCtext;
 
     float movementSpd = 2;
     Animator myAnim;
@@ -18,10 +18,8 @@ public class playerBehavior : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-       // npcText.SetActive(false);
-       // trappedNPCtext.SetActive(false);
-        //myBody = GetComponent<Rigidbody2D>();
-        //pointing to the specific RigidBody2D in the chara
+        npcText.SetActive(false); 
+        trappedNPCtext.SetActive(false);
         myAnim = GetComponent<Animator>();
 
     }
@@ -73,7 +71,7 @@ public class playerBehavior : MonoBehaviour
         // }
 
     }
-    private void OnCollisionEnter2D(Collision2D npcCollision)
+    private void OnCollisionEnter2D(Collision2D collision)
     {
         //if (collision.gameObject.name == "door" && keyAcquired = true)
         //{
@@ -98,12 +96,25 @@ public class playerBehavior : MonoBehaviour
             Destroy(GameObject.Find("door"));
             //key acquired, destroys key, obtain key condition true
         }
-        //if(keyAcquired && collision.gameObject.name == "door")
-        //{
-        //    Destroy(collision.gameObject);
-        //    //if key acquired + collide w/ door = door deletes self
 
-        //}
+        if(collision.gameObject.name == "NPC_1")
+        {
+            npcText.SetActive(true);
+            //'the key is some where to the east here'
+        }
+        else
+        {
+            npcText.SetActive(false);
+        }
+        if(collision.gameObject.name == "NPC_2")
+        {
+            trappedNPCtext.SetActive(true);
+            //text 'the exit is north of here, hidden behind a bush' 
+        }
+        else
+        {
+            trappedNPCtext.SetActive(false);
+        }
         
     }
 }
