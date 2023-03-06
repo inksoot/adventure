@@ -7,12 +7,19 @@ public class playerBehavior : MonoBehaviour
     float horizontalMove;
     float verticalMove;
 
+    bool keyAcquired = false;
+    bool gameEnd = false;
+    public GameObject npcText;
+    public GameObject trappedNPCtext;
+
     float movementSpd = 2;
     Animator myAnim;
 
     // Start is called before the first frame update
     void Start()
     {
+        npcText.SetActive(false);
+        trappedNPCtext.SetActive(false);
         //myBody = GetComponent<Rigidbody2D>();
         //pointing to the specific RigidBody2D in the chara
         myAnim = GetComponent<Animator>();
@@ -42,6 +49,8 @@ public class playerBehavior : MonoBehaviour
         }
         transform.position = newPos;
 
+    
+
         //horizontalMove = Input.GetAxis("Horizontal");
         //verticalMove = Input.GetAxis("Vertical");
         //animation later
@@ -63,6 +72,17 @@ public class playerBehavior : MonoBehaviour
         //     myAnim.SetBool("walking_vertical", false);
         // }
 
+    }
+    void OnCollisionEnter2D(Collision npcCollision)
+    {
+        // physical collision triggers dialogue here
+        //probably might need to change once key is obtained? apparently
+        //that's a thing
+    }
+
+    void OnCollisionEnter2D(Collision2D lockedNPCcollision)
+    {
+       //physical collision triggers dialogue here
     }
 
 }
