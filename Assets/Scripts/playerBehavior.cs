@@ -9,8 +9,8 @@ public class playerBehavior : MonoBehaviour
 
     bool keyAcquired = false;
     bool gameEnd = false;
-    public GameObject npcText;
-    public GameObject trappedNPCtext;
+   // public GameObject npcText;
+   // public GameObject trappedNPCtext;
 
     float movementSpd = 2;
     Animator myAnim;
@@ -18,8 +18,8 @@ public class playerBehavior : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        npcText.SetActive(false);
-        trappedNPCtext.SetActive(false);
+       // npcText.SetActive(false);
+       // trappedNPCtext.SetActive(false);
         //myBody = GetComponent<Rigidbody2D>();
         //pointing to the specific RigidBody2D in the chara
         myAnim = GetComponent<Animator>();
@@ -73,16 +73,37 @@ public class playerBehavior : MonoBehaviour
         // }
 
     }
-    void OnCollisionEnter2D(Collision npcCollision)
+    private void OnCollisionEnter2D(Collision2D npcCollision)
     {
+        //if (collision.gameObject.name == "door" && keyAcquired = true)
+        //{
+        //    Destroy(collision.gameObject);
+        //}
         // physical collision triggers dialogue here
         //probably might need to change once key is obtained? apparently
         //that's a thing
     }
 
-    void OnCollisionEnter2D(Collision2D lockedNPCcollision)
-    {
-       //physical collision triggers dialogue here
-    }
+    //void OnCollisionEnter2D(Collision2D lockedNPCcollision)
+    //{
+    //   //physical collision triggers dialogue here
+    //}
 
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if(collision.gameObject.name == "key")
+        {
+            keyAcquired = true;
+            Destroy(collision.gameObject);
+            Destroy(GameObject.Find("door"));
+            //key acquired, destroys key, obtain key condition true
+        }
+        //if(keyAcquired && collision.gameObject.name == "door")
+        //{
+        //    Destroy(collision.gameObject);
+        //    //if key acquired + collide w/ door = door deletes self
+
+        //}
+        
+    }
 }
