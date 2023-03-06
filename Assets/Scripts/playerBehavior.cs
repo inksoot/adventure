@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class playerBehavior : MonoBehaviour
 {
@@ -20,6 +21,8 @@ public class playerBehavior : MonoBehaviour
     {
         npcText.SetActive(false); 
         trappedNPCtext.SetActive(false);
+        //GameObject.Find("trappedNPCtextBox").SetActive(false);
+        //GameObject.Find("npcTextBox").SetActive(false);
         myAnim = GetComponent<Animator>();
 
     }
@@ -47,7 +50,7 @@ public class playerBehavior : MonoBehaviour
         }
         transform.position = newPos;
 
-    
+
 
         //horizontalMove = Input.GetAxis("Horizontal");
         //verticalMove = Input.GetAxis("Vertical");
@@ -100,6 +103,7 @@ public class playerBehavior : MonoBehaviour
         if(collision.gameObject.name == "NPC_1")
         {
             npcText.SetActive(true);
+            //GameObject.Find("npcTextBox").SetActive(true);
             //'the key is some where to the east here'
         }
         else
@@ -109,6 +113,7 @@ public class playerBehavior : MonoBehaviour
         if(collision.gameObject.name == "NPC_2")
         {
             trappedNPCtext.SetActive(true);
+            //GameObject.Find("trappedNPCtextBox").SetActive(true);
             //text 'the exit is north of here, hidden behind a bush' 
         }
         else
