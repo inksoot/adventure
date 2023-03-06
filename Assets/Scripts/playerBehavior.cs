@@ -7,7 +7,7 @@ public class playerBehavior : MonoBehaviour
     float horizontalMove;
     float verticalMove;
 
-    float movementSpd = 5;
+    float movementSpd = 2;
     Animator myAnim;
 
     // Start is called before the first frame update
