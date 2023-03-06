@@ -6,36 +6,62 @@ public class playerBehavior : MonoBehaviour
 {
     float horizontalMove;
     float verticalMove;
+
+    float movementSpd = 5;
     Animator myAnim;
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        //myBody = GetComponent<Rigidbody2D>();
+        //pointing to the specific RigidBody2D in the chara
+        myAnim = GetComponent<Animator>();
+
     }
 
     // Update is called once per frame
     void Update()
     {
-        horizontalMove = Input.GetAxis("Horizontal");
-        verticalMove = Input.GetAxis("Vertical");
+        Vector3 newPos = transform.position;
 
-       if (horizontalMove > 0.2f || horizontalMove < -0.2f)
+        if (Input.GetKey(KeyCode.W))
         {
-           myAnim.SetBool("walking_horizontal", true);
+            newPos.y += movementSpd * Time.deltaTime;
         }
-       else
+        if (Input.GetKey(KeyCode.S))
         {
-            myAnim.SetBool("walking_horizontal", false);
+            newPos.y -= movementSpd * Time.deltaTime;
         }
-        if (verticalMove > 0.2f || verticalMove < -0.2f)
+        if (Input.GetKey(KeyCode.A))
         {
-            myAnim.SetBool("walking_vertical", true);
+            newPos.x -= movementSpd * Time.deltaTime;
         }
-        else
+        if (Input.GetKey(KeyCode.D))
         {
-            myAnim.SetBool("walking_vertical", false);
+            newPos.x += movementSpd * Time.deltaTime;
         }
+        transform.position = newPos;
+
+        //horizontalMove = Input.GetAxis("Horizontal");
+        //verticalMove = Input.GetAxis("Vertical");
+        //animation later
+
+        //if (horizontalMove > 0.2f || horizontalMove < -0.2f)
+        // {
+        //    myAnim.SetBool("walking_horizontal", true);
+        // }
+        //else
+        // {
+        //     myAnim.SetBool("walking_horizontal", false);
+        // }
+        // if (verticalMove > 0.2f || verticalMove < -0.2f)
+        // {
+        //     myAnim.SetBool("walking_vertical", true);
+        // }
+        // else
+        // {
+        //     myAnim.SetBool("walking_vertical", false);
+        // }
 
     }
 
