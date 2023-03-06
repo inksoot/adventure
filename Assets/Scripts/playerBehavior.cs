@@ -12,6 +12,8 @@ public class playerBehavior : MonoBehaviour
     bool gameEnd = false;
     public GameObject npcText;
     public GameObject trappedNPCtext;
+    public GameObject npcTextBox;
+    public GameObject trappedNPCtextBox;
 
     float movementSpd = 2;
     Animator myAnim;
@@ -21,6 +23,8 @@ public class playerBehavior : MonoBehaviour
     {
         npcText.SetActive(false); 
         trappedNPCtext.SetActive(false);
+        npcTextBox.SetActive(false);
+        trappedNPCtextBox.SetActive(false);
         //GameObject.Find("trappedNPCtextBox").SetActive(false);
         //GameObject.Find("npcTextBox").SetActive(false);
         myAnim = GetComponent<Animator>();
@@ -96,29 +100,41 @@ public class playerBehavior : MonoBehaviour
         {
             keyAcquired = true;
             Destroy(collision.gameObject);
-            Destroy(GameObject.Find("door"));
+            //Destroy(GameObject.Find("door"));
             //key acquired, destroys key, obtain key condition true
         }
-
+        if(collision.gameObject.name == "door" && keyAcquired == true)
+        {
+            Destroy(GameObject.Find("door"));
+        }
         if(collision.gameObject.name == "NPC_1")
         {
             npcText.SetActive(true);
+            npcTextBox.SetActive(true);
             //GameObject.Find("npcTextBox").SetActive(true);
             //'the key is some where to the east here'
         }
         else
         {
             npcText.SetActive(false);
+            trappedNPCtextBox.SetActive(false);
         }
         if(collision.gameObject.name == "NPC_2")
         {
             trappedNPCtext.SetActive(true);
+            trappedNPCtextBox.SetActive(true);
             //GameObject.Find("trappedNPCtextBox").SetActive(true);
             //text 'the exit is north of here, hidden behind a bush' 
         }
         else
         {
             trappedNPCtext.SetActive(false);
+            trappedNPCtextBox.SetActive(false);
+        }
+
+        if(keyAcquired == true && collision.gameObject.name == "bush exit")
+        {
+            SceneManager.LoadScene("StartingScreen");
         }
         
     }

@@ -4,8 +4,10 @@ using UnityEngine;
 
 public class cameraBehavior : MonoBehaviour
 {
-    float movementSpd = 2;
+    //float movementSpd = 2;
     // Start is called before the first frame update
+    public Transform player;
+
     void Start()
     {
         
@@ -14,24 +16,6 @@ public class cameraBehavior : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Vector3 newPos = transform.position;
-
-        if (Input.GetKey(KeyCode.W))
-        {
-            newPos.y += movementSpd * Time.deltaTime;
-        }
-        if (Input.GetKey(KeyCode.S))
-        {
-            newPos.y -= movementSpd * Time.deltaTime;
-        }
-        if (Input.GetKey(KeyCode.A))
-        {
-            newPos.x -= movementSpd * Time.deltaTime;
-        }
-        if (Input.GetKey(KeyCode.D))
-        {
-            newPos.x += movementSpd * Time.deltaTime;
-        }
-        transform.position = newPos;
+        transform.position = player.transform.position + new Vector3(0, 1, -5);
     }
 }
